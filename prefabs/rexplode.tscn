@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://w81i8bdisfvc"]
+
+[ext_resource type="Texture2D" uid="uid://qds7kbcrsf5o" path="res://kenney_space-shooter-redux/PNG/Effects/star2.png" id="1_bq56v"]
+[ext_resource type="Script" path="res://prefabs/rexplode.gd" id="1_v56xw"]
+[ext_resource type="AudioStream" uid="uid://daak5qg4a3po4" path="res://kenney_space-shooter-redux/Bonus/sfx_twoTone.ogg" id="3_6njxh"]
+
+[sub_resource type="Curve" id="Curve_jniyq"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v85m8"]
+curve = SubResource("Curve_jniyq")
+
+[sub_resource type="Gradient" id="Gradient_u68pg"]
+offsets = PackedFloat32Array(0, 0.262295, 0.590164, 0.991803)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.303279, 0.303279, 0.303279, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nt1hj"]
+gradient = SubResource("Gradient_u68pg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2yh7"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = -720.0
+angle_curve = SubResource("CurveTexture_v85m8")
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_nt1hj")
+
+[node name="Rexplode" type="Node2D"]
+script = ExtResource("1_v56xw")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_e2yh7")
+texture = ExtResource("1_bq56v")
+one_shot = true
+explosiveness = 1.0
+trail_lifetime = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6njxh")
+autoplay = true

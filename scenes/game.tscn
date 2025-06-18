@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://s2xwcnntsq6r"]
+
+[ext_resource type="PackedScene" uid="uid://b2fl8bgm56q0b" path="res://prefabs/player.tscn" id="1_df0te"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_w3fsg"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_w3fsg")
+
+[node name="player" parent="." instance=ExtResource("1_df0te")]
+position = Vector2(1172, 319)
+
+[node name="enemy_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="enemy_timer" to="." method="_on_enemy_timer_timeout"]
