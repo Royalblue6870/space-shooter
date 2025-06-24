@@ -1,19 +1,28 @@
 extends CharacterBody2D
- 
-var speed: int 
-var screen_size : Vector2
-func _ready():
-	screen_size = get_viewport_rect().size
-	position = screen_size / 2
-	speed = 200
-	
-func get_input():
-#keyboard input:
-#input_dir = input direction
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	velocity = input_dir * speed
 
+
+const SPEED = 400.0
+const JUMP_VELOCITY = -600.0
+
+var start_position = Vector2(100, 42)
 func _physics_process(delta):
-#player movement.
-	get_input()
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
 	move_and_slide()
+	#respawn
+	if position.y> 1200:
+		position = start_position
