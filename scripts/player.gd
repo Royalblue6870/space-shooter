@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -600.0
 
+# MAKE THE 3 LIVES MECHANIC
+var currenthealth: int = 3
 var start_position = Vector2(100, 42)
 func _physics_process(delta):
 	# Add the gravity.
@@ -25,4 +27,7 @@ func _physics_process(delta):
 	move_and_slide()
 	#respawn
 	if position.y> 1200:
-		position = start_position
+		respawn()
+
+func respawn():
+	position = start_position
