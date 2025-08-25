@@ -4,16 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://c7prmkbb1s0bi" path="res://icon.svg" id="1_v6c0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chhsn"]
-size = Vector2(124.5, 121)
+size = Vector2(9.5, 9)
 
 [node name="enemy" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_3ies5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.1875, -0.1875)
+scale = Vector2(0.0810547, 0.0810547)
 texture = ExtResource("1_v6c0v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 0.5)
+[node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_chhsn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

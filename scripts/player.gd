@@ -1,16 +1,29 @@
 extends CharacterBody2D
 
-
-const SPEED = 400.0
-const JUMP_VELOCITY = -600.0
+@onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+const SPEED = 100.0
+const JUMP_VELOCITY = -300
 
 # MAKE THE 3 LIVES MECHANIC
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var currenthealth: int = 3
 var start_position = Vector2(100, 42)
 func _physics_process(delta):
 	# Add the gravity.
+	
+	
+#MESS AROUND WITH ANIMATION FLIPS LATER....
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += gravity * delta
+	else:
+		if abs(velocity.x) <10:
+			anim.play("run")
+			
+		#FIX. I DID SMTH WRONG
+	if velocity.x < 0:
+		anim.flip_h = true
+	else:
+		anim.flip_h = false
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -25,6 +38,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	
 	#respawn
 	if position.y> 1200:
 		respawn()
