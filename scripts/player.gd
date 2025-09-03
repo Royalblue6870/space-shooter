@@ -12,14 +12,12 @@ func _physics_process(delta):
 	# Add the gravity.
 	
 	
-#MESS AROUND WITH ANIMATION FLIPS LATER....
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
 		if abs(velocity.x) <10:
 			anim.play("run")
 			
-		#FIX. I DID SMTH WRONG
 	if velocity.x < 0:
 		anim.flip_h = true
 	else:
