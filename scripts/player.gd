@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	
 	#respawn
-	if position.y> 1200:
+	if position.y> 400:
 		respawn()
 
 func respawn():
