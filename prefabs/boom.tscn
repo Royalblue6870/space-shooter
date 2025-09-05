@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgcvi3bsij8yq"]
+
+[ext_resource type="Script" path="res://prefabs/boom.gd" id="1_uka81"]
+[ext_resource type="Texture2D" uid="uid://danuxn02nxpp3" path="res://pretty pictures/Explosions/smaller_particle.png" id="2_8ylyi"]
+
+[sub_resource type="Gradient" id="Gradient_1cy1q"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0862745)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w6x4x"]
+gradient = SubResource("Gradient_1cy1q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vorf"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = -90.0
+initial_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_w6x4x")
+
+[node name="BOOM" type="Node2D"]
+script = ExtResource("1_uka81")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+scale = Vector2(0.2, 0.2)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_5vorf")
+texture = ExtResource("2_8ylyi")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0

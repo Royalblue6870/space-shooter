@@ -1,52 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bri2jy8snhcdl"]
+[gd_scene load_steps=4 format=3 uid="uid://bri2jy8snhcdl"]
 
 [ext_resource type="Script" path="res://laserbeam.gd" id="1_maacv"]
 [ext_resource type="Texture2D" uid="uid://cqi1ttvb3qr0b" path="res://pretty pictures/LASERBEAM.png" id="2_qdkps"]
-[ext_resource type="Texture2D" uid="uid://cu1etco5upu15" path="res://pretty pictures/Explosions/Blue Effect Bullet Impact Explosion 32x32.png" id="2_y2fkj"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ih3ir"]
-atlas = ExtResource("2_y2fkj")
-region = Rect2(512, 384, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sp8pp"]
-atlas = ExtResource("2_y2fkj")
-region = Rect2(544, 384, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_it0r4"]
-atlas = ExtResource("2_y2fkj")
-region = Rect2(576, 384, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_isdr4"]
-atlas = ExtResource("2_y2fkj")
-region = Rect2(608, 384, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_n8fla"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ih3ir")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sp8pp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_it0r4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_isdr4")
-}],
-"loop": true,
-"name": &"laserboom",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_qdkps")
-}],
-"loop": true,
-"name": &"norm",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgjqg"]
 size = Vector2(1071.43, 1714.29)
@@ -55,10 +10,10 @@ size = Vector2(1071.43, 1714.29)
 z_index = -20
 script = ExtResource("1_maacv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.7, 0.7)
-sprite_frames = SubResource("SpriteFrames_n8fla")
-animation = &"norm"
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, 3.57628e-07)
+scale = Vector2(0.5, 0.5625)
+texture = ExtResource("2_qdkps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.35714, -1.70299e-06)
