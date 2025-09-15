@@ -5,6 +5,7 @@ extends Area2D
 
 func _process(_delta):
 	position.y += speed
+	
 	if $RayCast2D.is_colliding():
 		var collider = $RayCast2D.get_collider()
 		if collider != null and collider.name == "player":

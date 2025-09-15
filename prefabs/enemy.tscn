@@ -21,5 +21,7 @@ autostart = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2ha65")
 
+[node name="shootsound" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

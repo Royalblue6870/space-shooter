@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=4 uid="uid://cxwukq775avxp"]
+[gd_scene load_steps=37 format=4 uid="uid://cxwukq775avxp"]
 
 [ext_resource type="PackedScene" uid="uid://cjv82d05khtds" path="res://prefabs/player.tscn" id="1_i1tmu"]
+[ext_resource type="AudioStream" uid="uid://q82woy38k60i" path="res://pretty noises/ghostjump.wav" id="2_a4mev"]
 [ext_resource type="Texture2D" uid="uid://cr2b4q07eceos" path="res://pretty pictures/Tiles/tile1.png" id="2_dgsoi"]
 [ext_resource type="Texture2D" uid="uid://b5um4mg5bg4px" path="res://pretty pictures/Tiles/tile2 top.png" id="3_kkhxr"]
 [ext_resource type="PackedScene" uid="uid://btovrllhbblrp" path="res://prefabs/portal.tscn" id="3_p8epq"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/path_follow_2d.gd" id="13_p7wir"]
 [ext_resource type="Script" path="res://scenes/path_follow_2d.gd" id="14_7gj5f"]
 [ext_resource type="Script" path="res://scenes/path_follow_2d_fast.gd" id="15_ob6au"]
+[ext_resource type="AudioStream" uid="uid://dsfq38w7uq5bb" path="res://pretty noises/bgmusic.mp3" id="17_758ve"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w1uw4"]
 resource_name = "tile1"
@@ -109,10 +111,43 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="Curve2D" id="Curve2D_71cch"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1963, 77, 0, 0, 0, 0, 2085, 77, 0, 0, 0, 0, 1965, 76)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_hdil7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2459, -129, 0, 0, 0, 0, 2669, -128, 0, 0, 0, 0, 2458, -128)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_tx1ay"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2731, -145, 0, 0, 0, 0, 2820, -145, 0, 0, 0, 0, 2731, -146)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_a4yq7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2890, -140, 0, 0, 0, 0, 3027, -139, 0, 0, 0, 0, 2890, -141)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_o8po3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3078, -141, 0, 0, 0, 0, 3725, -142, 0, 0, 0, 0, 3077, -141)
+}
+point_count = 3
+
 [node name="game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_i1tmu")]
-position = Vector2(493, 56)
+position = Vector2(100, 39)
+
+[node name="jumpsound" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("2_a4mev")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = 10
@@ -179,3 +214,70 @@ cubic_interp = false
 script = ExtResource("14_7gj5f")
 
 [node name="enemy" parent="Path2D4/PathFollow2D" instance=ExtResource("4_nt1gx")]
+
+[node name="Path2D5" type="Path2D" parent="."]
+position = Vector2(0, 6)
+curve = SubResource("Curve2D_71cch")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D5"]
+position = Vector2(1963, 77)
+rotates = false
+cubic_interp = false
+script = ExtResource("14_7gj5f")
+
+[node name="enemy" parent="Path2D5/PathFollow2D" instance=ExtResource("4_nt1gx")]
+
+[node name="Path2D6" type="Path2D" parent="."]
+position = Vector2(0, -10)
+curve = SubResource("Curve2D_hdil7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D6"]
+position = Vector2(2459, -129)
+rotation = 0.00476187
+rotates = false
+cubic_interp = false
+script = ExtResource("14_7gj5f")
+
+[node name="enemy" parent="Path2D6/PathFollow2D" instance=ExtResource("4_nt1gx")]
+
+[node name="Path2D7" type="Path2D" parent="."]
+position = Vector2(0, 6)
+curve = SubResource("Curve2D_tx1ay")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D7"]
+position = Vector2(2731, -145)
+rotates = false
+cubic_interp = false
+script = ExtResource("14_7gj5f")
+
+[node name="enemy" parent="Path2D7/PathFollow2D" instance=ExtResource("4_nt1gx")]
+
+[node name="Path2D8" type="Path2D" parent="."]
+curve = SubResource("Curve2D_a4yq7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D8"]
+position = Vector2(2890, -140)
+rotation = 0.00729914
+rotates = false
+cubic_interp = false
+script = ExtResource("14_7gj5f")
+
+[node name="enemy" parent="Path2D8/PathFollow2D" instance=ExtResource("4_nt1gx")]
+
+[node name="Path2D9" type="Path2D" parent="."]
+position = Vector2(0, 32)
+curve = SubResource("Curve2D_o8po3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D9"]
+position = Vector2(3078, -141)
+rotation = -0.00154559
+rotates = false
+cubic_interp = false
+script = ExtResource("14_7gj5f")
+
+[node name="enemy" parent="Path2D9/PathFollow2D" instance=ExtResource("4_nt1gx")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_758ve")
+volume_db = -5.315
+autoplay = true

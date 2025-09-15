@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1itnnkwj8awi"
+path="res://.godot/imported/laser.wav-65dd22d2aab1c039b626e5b04f51f6f0.sample"
+
+[deps]
+
+source_file="res://pretty noises/laser.wav"
+dest_files=["res://.godot/imported/laser.wav-65dd22d2aab1c039b626e5b04f51f6f0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
